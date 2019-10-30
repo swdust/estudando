@@ -1,6 +1,8 @@
 package entidades;
 
-public class Cliente {
+import java.io.Serializable;
+
+public class Cliente implements Serializable{
 	private int codigo;
 	private String nome;
 	private int cpf;
@@ -36,4 +38,12 @@ public class Cliente {
 		this.cpf = cpf;
 	}
 	
+	public String toString() {
+		
+		String to = new String();
+		to += ("nome: " + nome); 
+		to += ("\ncodigo: " + codigo); 
+		to += ("\ncpf: " + cpf); 
+		return to;
+	}
 }
