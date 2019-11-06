@@ -44,17 +44,18 @@ public class UsuarioDados {
 		return "Cliente removido com sucesso";
 	}
 	
-	public String alterarCliente(Cliente c1) {
+	public String alterarCliente(Cliente c1, int index) throws ClassNotFoundException, IOException {
 		
-		return null;
+		ArrayList<Cliente> listaCliente = listarClientes();
+		listaCliente.add(index, c1);
+		gravarLista(listaCliente);
+		return "Cliente " + c1.getNome() +" alterado com sucesso !!!";
 		
 	}
 		
-	
 	public ArrayList<Cliente> listarClientes() throws ClassNotFoundException, IOException {
 		
 		ArrayList<Cliente> listaCliente;
-		
 		FileInputStream fis = new FileInputStream(lista);
 		ObjectInputStream ois = new ObjectInputStream(fis);
 		listaCliente = (ArrayList) ois.readObject();
@@ -71,10 +72,10 @@ public class UsuarioDados {
 		oos.writeObject(listaClientes);
 	}
 	
-	public int buscaCliente(Cliente c1) throws ClassNotFoundException, IOException {
+	public int buscaIndexCliente(Cliente c1) throws ClassNotFoundException, IOException {
 		
-		ArrayList<Cliente> listaCliente;
-		listaCliente = listarClientes();
-		return 0;
+		ArrayList<Cliente> listaCliente = listarClientes();
+		return listaCliente.indexOf(c1);
+		
 	}
 }
